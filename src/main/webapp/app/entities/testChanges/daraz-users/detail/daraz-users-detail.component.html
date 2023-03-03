@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="darazUsers">
+      <h2 data-cy="darazUsersDetailsHeading"><span>Daraz Users</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ darazUsers.id }}</span>
+        </dd>
+        <dt><span>Full Name</span></dt>
+        <dd>
+          <span>{{ darazUsers.fullName }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ darazUsers.email }}</span>
+        </dd>
+        <dt><span>Phone</span></dt>
+        <dd>
+          <span>{{ darazUsers.phone }}</span>
+        </dd>
+        <dt><span>Manager</span></dt>
+        <dd>
+          <div *ngIf="darazUsers.manager">
+            <a [routerLink]="['/daraz-users', darazUsers.manager.id, 'view']">{{ darazUsers.manager.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Role</span></dt>
+        <dd>
+          <span *ngFor="let role of darazUsers.roles; let last = last">
+            <a [routerLink]="['/roles', role.id, 'view']">{{ role.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/testchanges/daraz-users', darazUsers.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

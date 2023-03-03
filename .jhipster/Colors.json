@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071742",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "colors",
+  "fields": [
+    {
+      "fieldName": "coloruid",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "Colors",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "cars",
+      "otherEntityRelationshipName": "color",
+      "ownerSide": false,
+      "relationshipName": "car",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

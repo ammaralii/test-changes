@@ -1,0 +1,167 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-order-delivery-heading" data-cy="OrderDeliveryCreateUpdateHeading">Create or edit a Order Delivery</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_deliveryDate">Delivery Date</label>
+          <div class="input-group">
+            <input
+              id="field_deliveryDate"
+              data-cy="deliveryDate"
+              type="text"
+              class="form-control"
+              name="deliveryDate"
+              ngbDatepicker
+              #deliveryDateDp="ngbDatepicker"
+              formControlName="deliveryDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="deliveryDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_deliveryCharge">Delivery Charge</label>
+          <input
+            type="number"
+            class="form-control"
+            name="deliveryCharge"
+            id="field_deliveryCharge"
+            data-cy="deliveryCharge"
+            formControlName="deliveryCharge"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_shippingStatus">Shipping Status</label>
+          <select
+            class="form-control"
+            name="shippingStatus"
+            formControlName="shippingStatus"
+            id="field_shippingStatus"
+            data-cy="shippingStatus"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let shippingStatus of shippingStatusValues" [value]="shippingStatus">shippingStatus</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('shippingStatus')!.invalid && (editForm.get('shippingStatus')!.dirty || editForm.get('shippingStatus')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingStatus')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_order">Order</label>
+          <select class="form-control" id="field_order" data-cy="order" name="order" formControlName="order" [compareWith]="compareOrders">
+            <option *ngIf="editForm.get(['order'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="ordersOption" *ngFor="let ordersOption of ordersSharedCollection">{{ ordersOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['order'])!.invalid && (editForm.get(['order'])!.dirty || editForm.get(['order'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['order'])?.errors?.required"> This field is required. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_shippingAddress">Shipping Address</label>
+          <select
+            class="form-control"
+            id="field_shippingAddress"
+            data-cy="shippingAddress"
+            name="shippingAddress"
+            formControlName="shippingAddress"
+            [compareWith]="compareShippingDetails"
+          >
+            <option *ngIf="editForm.get(['shippingAddress'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="shippingDetailsOption" *ngFor="let shippingDetailsOption of shippingDetailsSharedCollection">
+              {{ shippingDetailsOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['shippingAddress'])!.invalid &&
+            (editForm.get(['shippingAddress'])!.dirty || editForm.get(['shippingAddress'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['shippingAddress'])?.errors?.required"> This field is required. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_deliveryManager">Delivery Manager</label>
+          <select
+            class="form-control"
+            id="field_deliveryManager"
+            data-cy="deliveryManager"
+            name="deliveryManager"
+            formControlName="deliveryManager"
+            [compareWith]="compareDarazUsers"
+          >
+            <option *ngIf="editForm.get(['deliveryManager'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="darazUsersOption" *ngFor="let darazUsersOption of darazUsersSharedCollection">
+              {{ darazUsersOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['deliveryManager'])!.invalid &&
+            (editForm.get(['deliveryManager'])!.dirty || editForm.get(['deliveryManager'])!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['deliveryManager'])?.errors?.required"> This field is required. </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_deliveryBoy">Delivery Boy</label>
+          <select
+            class="form-control"
+            id="field_deliveryBoy"
+            data-cy="deliveryBoy"
+            name="deliveryBoy"
+            formControlName="deliveryBoy"
+            [compareWith]="compareDarazUsers"
+          >
+            <option *ngIf="editForm.get(['deliveryBoy'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="darazUsersOption" *ngFor="let darazUsersOption of darazUsersSharedCollection">
+              {{ darazUsersOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="editForm.get(['deliveryBoy'])!.invalid && (editForm.get(['deliveryBoy'])!.dirty || editForm.get(['deliveryBoy'])!.touched)"
+        >
+          <small class="form-text text-danger" *ngIf="editForm.get(['deliveryBoy'])?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

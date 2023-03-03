@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071745",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "order_delivery",
+  "fields": [
+    {
+      "fieldName": "deliveryDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "deliveryCharge",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "shippingStatus",
+      "fieldType": "ShippingStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Pending,Delivered,Cancelled"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "OrderDelivery",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "orders",
+      "otherEntityRelationshipName": "orderdeliveryOrder",
+      "relationshipName": "order",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "shippingDetails",
+      "otherEntityRelationshipName": "orderdeliveryShippingaddress",
+      "relationshipName": "shippingAddress",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "darazUsers",
+      "otherEntityRelationshipName": "orderdeliveryDeliverymanager",
+      "relationshipName": "deliveryManager",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "darazUsers",
+      "otherEntityRelationshipName": "orderdeliveryDeliveryboy",
+      "relationshipName": "deliveryBoy",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

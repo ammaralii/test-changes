@@ -1,0 +1,11 @@
+id;delivery_date;delivery_charge;shipping_status;order_id;shipping_address_id;delivery_manager_id;delivery_boy_id
+1;2023-03-02;67653;Delivered;1;1;1;1
+2;2023-03-03;37231;Delivered;2;2;2;2
+3;2023-03-02;55905;Delivered;3;3;3;3
+4;2023-03-03;9739;Pending;4;4;4;4
+5;2023-03-02;39258;Cancelled;5;5;5;5
+6;2023-03-02;61721;Pending;6;6;6;6
+7;2023-03-03;96905;Cancelled;7;7;7;7
+8;2023-03-03;33957;Cancelled;8;8;8;8
+9;2023-03-03;25959;Delivered;9;9;9;9
+10;2023-03-03;69733;Delivered;10;10;10;10

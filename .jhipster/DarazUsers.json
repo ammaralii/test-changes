@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071744",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "daraz_users",
+  "fields": [
+    {
+      "fieldName": "fullName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "DarazUsers",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "darazUsers",
+      "otherEntityRelationshipName": "darazusersManager",
+      "relationshipName": "manager",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "roles",
+      "otherEntityRelationshipName": "user",
+      "ownerSide": true,
+      "relationshipName": "role",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "addresses",
+      "otherEntityRelationshipName": "user",
+      "relationshipName": "addressesUser",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "darazUsers",
+      "otherEntityRelationshipName": "manager",
+      "relationshipName": "darazusersManager",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "orderDelivery",
+      "otherEntityRelationshipName": "deliveryManager",
+      "relationshipName": "orderdeliveryDeliverymanager",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "orderDelivery",
+      "otherEntityRelationshipName": "deliveryBoy",
+      "relationshipName": "orderdeliveryDeliveryboy",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

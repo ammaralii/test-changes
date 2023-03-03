@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071743",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "customers",
+  "fields": [
+    {
+      "fieldName": "fullName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "Customers",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "orders",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "ordersCustomer",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "paymentMethods",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "paymentmethodsCustomer",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
