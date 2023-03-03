@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071747",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "orders",
+  "fields": [
+    {
+      "fieldName": "orderDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "Orders",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "customers",
+      "otherEntityRelationshipName": "ordersCustomer",
+      "relationshipName": "customer",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "orderDelivery",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "orderdeliveryOrder",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "orderDetails",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "orderdetailsOrder",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "shippingDetails",
+      "otherEntityRelationshipName": "order",
+      "relationshipName": "shippingdetailsOrder",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Cars.
+    -->
+    <changeSet id="20230303071740-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="cars_id"
+                                 baseTableName="rel_cars__color"
+                                 constraintName="fk_rel_cars__color__cars_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cars"/>
+
+        <addForeignKeyConstraint baseColumnNames="color_id"
+                                 baseTableName="rel_cars__color"
+                                 constraintName="fk_rel_cars__color__color_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="colors"/>
+    </changeSet>
+</databaseChangeLog>

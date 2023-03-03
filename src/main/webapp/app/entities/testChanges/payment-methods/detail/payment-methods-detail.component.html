@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paymentMethods">
+      <h2 data-cy="paymentMethodsDetailsHeading"><span>Payment Methods</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ paymentMethods.id }}</span>
+        </dd>
+        <dt><span>Card Number</span></dt>
+        <dd>
+          <span>{{ paymentMethods.cardNumber }}</span>
+        </dd>
+        <dt><span>Card Holder Name</span></dt>
+        <dd>
+          <span>{{ paymentMethods.cardHolderName }}</span>
+        </dd>
+        <dt><span>Expiration Date</span></dt>
+        <dd>
+          <span>{{ paymentMethods.expirationDate }}</span>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+          <div *ngIf="paymentMethods.customer">
+            <a [routerLink]="['/customers', paymentMethods.customer.id, 'view']">{{ paymentMethods.customer.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/testchanges/payment-methods', paymentMethods.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

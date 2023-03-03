@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="shippingDetails">
+      <h2 data-cy="shippingDetailsDetailsHeading"><span>Shipping Details</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ shippingDetails.id }}</span>
+        </dd>
+        <dt><span>Shipping Address</span></dt>
+        <dd>
+          <span>{{ shippingDetails.shippingAddress }}</span>
+        </dd>
+        <dt><span>Shipping Method</span></dt>
+        <dd>
+          <span>{{ shippingDetails.shippingMethod }}</span>
+        </dd>
+        <dt><span>Estimated Delivery Date</span></dt>
+        <dd>
+          <span>{{ shippingDetails.estimatedDeliveryDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Order</span></dt>
+        <dd>
+          <div *ngIf="shippingDetails.order">
+            <a [routerLink]="['/orders', shippingDetails.order.id, 'view']">{{ shippingDetails.order.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/testchanges/shipping-details', shippingDetails.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

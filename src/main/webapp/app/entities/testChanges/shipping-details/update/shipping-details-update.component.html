@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-shipping-details-heading" data-cy="ShippingDetailsCreateUpdateHeading">Create or edit a Shipping Details</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_shippingAddress">Shipping Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="shippingAddress"
+            id="field_shippingAddress"
+            data-cy="shippingAddress"
+            formControlName="shippingAddress"
+          />
+          <div
+            *ngIf="
+              editForm.get('shippingAddress')!.invalid &&
+              (editForm.get('shippingAddress')!.dirty || editForm.get('shippingAddress')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingAddress')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingAddress')?.errors?.maxlength">
+              This field cannot be longer than 32 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_shippingMethod">Shipping Method</label>
+          <select
+            class="form-control"
+            name="shippingMethod"
+            formControlName="shippingMethod"
+            id="field_shippingMethod"
+            data-cy="shippingMethod"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let shippingMethod of shippingMethodValues" [value]="shippingMethod">shippingMethod</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('shippingMethod')!.invalid && (editForm.get('shippingMethod')!.dirty || editForm.get('shippingMethod')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('shippingMethod')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_estimatedDeliveryDate">Estimated Delivery Date</label>
+          <div class="input-group">
+            <input
+              id="field_estimatedDeliveryDate"
+              data-cy="estimatedDeliveryDate"
+              type="text"
+              class="form-control"
+              name="estimatedDeliveryDate"
+              ngbDatepicker
+              #estimatedDeliveryDateDp="ngbDatepicker"
+              formControlName="estimatedDeliveryDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="estimatedDeliveryDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('estimatedDeliveryDate')!.invalid &&
+              (editForm.get('estimatedDeliveryDate')!.dirty || editForm.get('estimatedDeliveryDate')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('estimatedDeliveryDate')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_order">Order</label>
+          <select class="form-control" id="field_order" data-cy="order" name="order" formControlName="order" [compareWith]="compareOrders">
+            <option *ngIf="editForm.get(['order'])!.value == null" [ngValue]="null" selected></option>
+            <option [ngValue]="ordersOption" *ngFor="let ordersOption of ordersSharedCollection">{{ ordersOption.id }}</option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['order'])!.invalid && (editForm.get(['order'])!.dirty || editForm.get(['order'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['order'])?.errors?.required"> This field is required. </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

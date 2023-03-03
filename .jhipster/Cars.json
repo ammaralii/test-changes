@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071740",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "cars",
+  "fields": [
+    {
+      "fieldName": "caruid",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "Cars",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "colors",
+      "otherEntityRelationshipName": "car",
+      "ownerSide": true,
+      "relationshipName": "color",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

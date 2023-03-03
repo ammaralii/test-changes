@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071752",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "shipping_details",
+  "fields": [
+    {
+      "fieldName": "shippingAddress",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "32"
+    },
+    {
+      "fieldName": "shippingMethod",
+      "fieldType": "ShippingMethod",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "COD,CASH,CARD"
+    },
+    {
+      "fieldName": "estimatedDeliveryDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "ShippingDetails",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "orders",
+      "otherEntityRelationshipName": "shippingdetailsOrder",
+      "relationshipName": "order",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "orderDelivery",
+      "otherEntityRelationshipName": "shippingAddress",
+      "relationshipName": "orderdeliveryShippingaddress",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

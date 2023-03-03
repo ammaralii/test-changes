@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="orderDelivery">
+      <h2 data-cy="orderDeliveryDetailsHeading"><span>Order Delivery</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ orderDelivery.id }}</span>
+        </dd>
+        <dt><span>Delivery Date</span></dt>
+        <dd>
+          <span>{{ orderDelivery.deliveryDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Delivery Charge</span></dt>
+        <dd>
+          <span>{{ orderDelivery.deliveryCharge }}</span>
+        </dd>
+        <dt><span>Shipping Status</span></dt>
+        <dd>
+          <span>{{ orderDelivery.shippingStatus }}</span>
+        </dd>
+        <dt><span>Order</span></dt>
+        <dd>
+          <div *ngIf="orderDelivery.order">
+            <a [routerLink]="['/orders', orderDelivery.order.id, 'view']">{{ orderDelivery.order.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Shipping Address</span></dt>
+        <dd>
+          <div *ngIf="orderDelivery.shippingAddress">
+            <a [routerLink]="['/shipping-details', orderDelivery.shippingAddress.id, 'view']">{{ orderDelivery.shippingAddress.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Delivery Manager</span></dt>
+        <dd>
+          <div *ngIf="orderDelivery.deliveryManager">
+            <a [routerLink]="['/daraz-users', orderDelivery.deliveryManager.id, 'view']">{{ orderDelivery.deliveryManager.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Delivery Boy</span></dt>
+        <dd>
+          <div *ngIf="orderDelivery.deliveryBoy">
+            <a [routerLink]="['/daraz-users', orderDelivery.deliveryBoy.id, 'view']">{{ orderDelivery.deliveryBoy.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/testchanges/order-delivery', orderDelivery.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

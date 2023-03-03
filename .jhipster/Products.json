@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20230303071750",
+  "clientRootFolder": "testChanges",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "products",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "microserviceName": "testChanges",
+  "name": "Products",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "categories",
+      "otherEntityRelationshipName": "productsCategory",
+      "relationshipName": "category",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "orderDetails",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "orderdetailsProduct",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "productDetails",
+      "otherEntityRelationshipName": "product",
+      "relationshipName": "productdetailsProduct",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
