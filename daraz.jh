@@ -1,0 +1,143 @@
+entity Addresses(addresses) {
+    street String required maxlength(30),
+    city String required maxlength(30),
+    state String required maxlength(30)
+}
+
+entity Cars(cars) {
+    caruid Integer required,
+    name String required maxlength(100)
+}
+
+entity Categories(categories) {
+    name String required maxlength(100),
+    detail String required maxlength(100)
+}
+
+entity Colors(colors) {
+    coloruid Integer required,
+    name String required maxlength(100)
+}
+
+entity Customers(customers) {
+    fullName String required maxlength(100),
+    email String required maxlength(255),
+    phone String required maxlength(255)
+}
+
+entity DarazUsers(Daraz_Users) {
+    fullName String required maxlength(100),
+    email String required maxlength(255),
+    phone String required maxlength(255)
+}
+
+entity OrderDelivery(Order_Delivery) {
+    deliveryDate LocalDate,
+    deliveryCharge Double,
+    shippingStatus ShippingStatus required
+}
+
+entity OrderDetails(Order_Details) {
+    quantity Integer,
+    amount Double
+}
+
+entity Orders(Orders) {
+    orderDate LocalDate required,
+    totalAmount Integer
+}
+
+entity PaymentMethods(Payment_Methods) {
+    cardNumber String required maxlength(32),
+    cardHolderName String required maxlength(32),
+    expirationDate String required maxlength(10)
+}
+
+entity ProductDetails(Product_Details) {
+    description String required maxlength(65535),
+    imageUrl String required maxlength(32),
+    isavailable Boolean required
+}
+
+entity Products(Products) {
+    name String required maxlength(100)
+}
+
+entity Roles(roles) {
+    rolePrId Integer required,
+    name String required maxlength(30)
+}
+
+entity ShippingDetails(Shipping_Details) {
+    shippingAddress String required maxlength(32),
+    shippingMethod ShippingMethod required,
+    estimatedDeliveryDate LocalDate required
+}
+
+// Relations
+relationship ManyToOne {
+    Addresses{user required} to DarazUsers{addressesUser}
+}
+
+relationship ManyToMany {
+    Cars{color} to Colors{car}
+}
+
+relationship ManyToOne {
+    DarazUsers{manager} to DarazUsers{darazusersManager}
+}
+
+relationship ManyToOne {
+    OrderDelivery{order required} to Orders{orderdeliveryOrder}
+}
+
+relationship ManyToOne {
+    OrderDelivery{shippingAddress required} to ShippingDetails{orderdeliveryShippingaddress}
+}
+
+relationship ManyToOne {
+    OrderDelivery{deliveryManager required} to DarazUsers{orderdeliveryDeliverymanager}
+}
+
+relationship ManyToOne {
+    OrderDelivery{deliveryBoy required} to DarazUsers{orderdeliveryDeliveryboy}
+}
+
+relationship ManyToOne {
+    OrderDetails{order required} to Orders{orderdetailsOrder}
+}
+
+relationship ManyToOne {
+    OrderDetails{product required} to Products{orderdetailsProduct}
+}
+
+relationship ManyToOne {
+    Orders{customer required} to Customers{ordersCustomer}
+}
+
+relationship ManyToOne {
+    PaymentMethods{customer required} to Customers{paymentmethodsCustomer}
+}
+
+relationship ManyToOne {
+    ProductDetails{product required} to Products{productdetailsProduct}
+}
+
+relationship ManyToOne {
+    Products{category required} to Categories{productsCategory}
+}
+
+relationship ManyToOne {
+    ShippingDetails{order required} to Orders{shippingdetailsOrder}
+}
+
+relationship ManyToMany {
+    DarazUsers{role} to Roles{user}
+}
+
+// Options
+service * with serviceClass
+
+paginate * with pagination
+
+filter *
