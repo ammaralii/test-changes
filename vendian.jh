@@ -1,0 +1,2284 @@
+entity Addresses(addresses) {
+    address String required maxlength(255),
+    city String maxlength(255),
+    province String maxlength(255),
+    country String maxlength(255),
+    postalcode String maxlength(255),
+    isdeleted Boolean,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ApproverFlows(approver_flows) {
+    referenceType String required maxlength(255),
+    approverStatus ApproverStatus required,
+    approval Approval required,
+    currentStatus CurrentStatus required,
+    nextStatus NextStatus required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    version Integer required
+}
+
+entity ApproverGroups(approver_groups) {
+    referenceId Integer,
+    referenceType String required maxlength(255),
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity Approvers(approvers) {
+    userId String maxlength(255),
+    reference Reference required,
+    as String required,
+    comment String maxlength(65535),
+    status Status required,
+    stausDate Instant required,
+    priority Integer required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity AttributePermissions(attribute_permissions) {
+    method String required maxlength(255),
+    route String required maxlength(255),
+    responsepermissions String,
+    requestpermissions String,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Attributes(attributes) {
+    name String maxlength(255),
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer,
+    effDate Instant
+}
+
+entity AuditLogs(audit_logs) {
+    event String required maxlength(255),
+    eventTime Instant required,
+    description String maxlength(255),
+    oldChange String,
+    newChange String,
+    createdAt Instant required,
+    updatedAt Instant required,
+    version Integer required
+}
+
+entity Benefits(benefits) {
+    name String required unique maxlength(255),
+    isdeleted Boolean,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity BloodGroups(blood_groups) {
+    name String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity BusinessUnits(business_units) {
+    name String required maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity ClaimApprovers(claim_approvers) {
+    referenceid Integer,
+    designation String maxlength(255),
+    approveorder Integer,
+    reference String maxlength(255),
+    comments String maxlength(255),
+    approvedby String maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ClaimDetails(claim_details) {
+    amount Integer,
+    startdate Instant,
+    enddate Instant,
+    description String maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ClaimImages(claim_images) {
+    images String maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ClaimRequestViews(claim_request_views) {
+    costcenter String maxlength(255),
+    comments String maxlength(255),
+    amountreleased BigDecimal,
+    designation String maxlength(255),
+    department String maxlength(255),
+    location String maxlength(255),
+    manager String maxlength(255),
+    createdat Instant,
+    updatedat Instant required
+}
+
+entity ClaimRequests(claim_requests) {
+    projectid Integer,
+    comments String maxlength(255),
+    amountreleased Integer,
+    designation String maxlength(255),
+    department String maxlength(255),
+    location String maxlength(255),
+    manager String maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ClaimStatus(claim_status) {
+    status String maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ClaimTypes(claim_types) {
+    claimtype String maxlength(255),
+    daterangerequired Boolean,
+    descriptionrequired Boolean,
+    parentid Integer,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity Companies(companies) {
+    name String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity CompensationBenefits(compensation_benefits) {
+    amount Float,
+    isdeleted Boolean,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity Competencies(competencies) {
+    name String required maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Configs(configs) {
+    name String maxlength(255),
+    group String maxlength(255),
+    intvalue Integer,
+    stringvalue String maxlength(255),
+    decimalvalue BigDecimal,
+    jsonvalue String,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Configurations(configurations) {
+    name String required maxlength(255),
+    group String required maxlength(255),
+    intValue Integer,
+    stringValue String maxlength(255),
+    doubleValue Double,
+    dateValue Instant,
+    jsonValue String,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity DealEvents(deal_events) {
+    eventtype Eventtype required,
+    createdat Instant required
+}
+
+entity DealRequirementMatchingResources(deal_requirement_matching_resources) {
+    comments String maxlength(500),
+    createdat Instant,
+    updatedat Instant,
+    deletedat Instant
+}
+
+entity DealRequirements(deal_requirements) {
+    dealreqidentifier String required maxlength(255),
+    competencyname String required maxlength(255),
+    skills String,
+    resourcerequired Double required,
+    minexperiencelevel String maxlength(255),
+    maxexperiencelevel String maxlength(255),
+    createdat Instant,
+    updatedat Instant,
+    deletedat Instant
+}
+
+entity DealResourceEventLogs(deal_resource_event_logs) {
+    comments String required maxlength(500),
+    createdat Instant required
+}
+
+entity DealResourceSkills(deal_resource_skills) {
+    createdat Instant,
+    updatedat Instant,
+    deletedat Instant
+}
+
+entity DealResourceStatus(deal_resource_status) {
+    displayname String required maxlength(255),
+    group String required maxlength(255),
+    systemkey String required unique maxlength(255),
+    effectivedate Instant,
+    enddate Instant,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity DealResources(deal_resources) {
+    firstname String maxlength(255),
+    lastname String maxlength(255),
+    joiningdate Instant,
+    externalexpyears Integer,
+    externalexpmonths Integer,
+    createdat Instant,
+    updatedat Instant,
+    type Type required,
+    isactive Boolean required
+}
+
+entity Deals(deals) {
+    dealnumber String required maxlength(255),
+    dealname String required maxlength(255),
+    businessunit String maxlength(255),
+    clientname String required maxlength(255),
+    dealowner String maxlength(255),
+    proposaltype String maxlength(255),
+    projectid Integer,
+    expectedstartdate Instant required,
+    stage String maxlength(255),
+    probability Double required,
+    projectduration Double required,
+    type Type required,
+    status Status required,
+    closedat Instant,
+    createdat Instant,
+    updatedat Instant,
+    deletedat Instant,
+    resourcingenteredinvendians Boolean
+}
+
+entity Departments(departments) {
+    name String maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity DesignationJobDescriptions(designation_job_descriptions) {
+    createdat Instant,
+    updatedat Instant
+}
+
+entity Designations(designations) {
+    name String required maxlength(255),
+    createdat Instant,
+    updatedat Instant,
+    deletedat Instant
+}
+
+entity Divisions(divisions) {
+    name String required maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Documents(documents) {
+    name Blob required,
+    url Blob required,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeAddresses(employee_addresses) {
+    isdeleted Boolean,
+    createdat Instant,
+    updatedat Instant,
+    type Type required
+}
+
+entity EmployeeBirthdays(employee_birthdays) {
+    birthdayDetails String,
+    year Integer required,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeCertificates(employee_certificates) {
+    name String required maxlength(255),
+    certificateno String maxlength(255),
+    issuingbody String maxlength(255),
+    date Instant required,
+    createdat Instant,
+    updatedat Instant,
+    validtill Instant,
+    certificatecompetency String maxlength(255),
+    deletedat Instant
+}
+
+entity EmployeeComments(employee_comments) {
+    title Blob required,
+    content Blob required,
+    dated Blob required,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeCompensation(employee_compensation) {
+    amount Blob required,
+    date Instant required,
+    reason String maxlength(65535),
+    type Type required,
+    commitmentuntil Instant,
+    comments String maxlength(65535),
+    createdat Instant,
+    updatedat Instant,
+    reasoncomments String maxlength(255)
+}
+
+entity EmployeeContacts(employee_contacts) {
+    number Blob required,
+    type Type,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeDetails(employee_details) {
+    religion Religion,
+    maritalstatus Maritalstatus,
+    cnic Blob,
+    cnicexpiry Blob,
+    bloodgroup Bloodgroup,
+    taxreturnfiler Blob,
+    passportno Blob,
+    passportexpiry Blob,
+    createdat Instant,
+    updatedat Instant,
+    totaltenure String maxlength(255)
+}
+
+entity EmployeeDocuments(employee_documents) {
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeEducation(employee_education) {
+    institute String required maxlength(255),
+    major String maxlength(255),
+    degree String maxlength(255),
+    value String maxlength(255),
+    city String maxlength(255),
+    province String maxlength(255),
+    country String maxlength(255),
+    datefrom Instant,
+    dateto Instant,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeEmergencyContacts(employee_emergency_contacts) {
+    fullname String required maxlength(255),
+    relationship String required maxlength(255),
+    contactno String required maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeFamilyInfo(employee_family_info) {
+    fullname String required maxlength(255),
+    relationship String required maxlength(255),
+    contactno String maxlength(255),
+    email String maxlength(255),
+    dob Instant,
+    registeredinmedical Boolean,
+    cnic Blob,
+    createdat Instant,
+    updatedat Instant,
+    medicalpolicyno String maxlength(255),
+    gender Gender required
+}
+
+entity EmployeeJobInfo(employee_job_info) {
+    title String required maxlength(255),
+    grade String required maxlength(255),
+    subgrade String required maxlength(255),
+    startdate Instant required,
+    enddate Instant,
+    createdat Instant,
+    updatedat Instant,
+    location Integer,
+    grosssalary Blob,
+    fuelallowance Blob
+}
+
+entity EmployeeProfileHistoryLogs(employee_profile_history_logs) {
+    tablename String required maxlength(255),
+    rowid Integer required,
+    eventtype String required maxlength(255),
+    fields Blob,
+    updatedbyid Integer required,
+    activityid String required maxlength(255),
+    createdat Instant,
+    updatedat Instant,
+    category String required maxlength(255)
+}
+
+entity EmployeeProjectRatings(employee_project_ratings) {
+    createdat Instant,
+    updatedat Instant,
+    pmquality Blob,
+    pmownership Blob,
+    pmskill Blob,
+    pmethics Blob,
+    pmefficiency Blob,
+    pmfreeze Blob,
+    archfreeze Blob,
+    pmcomment Blob,
+    archquality Blob,
+    archownership Blob,
+    archskill Blob,
+    archethics Blob,
+    archefficiency Blob,
+    archcomment Blob,
+    archcodequality Blob,
+    archdocumentation Blob,
+    archcollaboration Blob,
+    pmdocumentation Blob,
+    pmcollaboration Blob
+}
+
+entity EmployeeProjectRatings20190826(employee_project_ratings_20190826) {
+    createdat Instant,
+    updatedat Instant,
+    pmquality Blob,
+    pmownership Blob,
+    pmskill Blob,
+    pmethics Blob,
+    pmefficiency Blob,
+    pmfreeze Blob,
+    archfreeze Blob,
+    pmcomment Blob,
+    archquality Blob,
+    archownership Blob,
+    archskill Blob,
+    archethics Blob,
+    archefficiency Blob,
+    archcomment Blob,
+    projectarchitectid Integer,
+    projectmanagerid Integer,
+    employeeid Integer,
+    projectcycleid Integer
+}
+
+entity EmployeeProjectRoles(employee_project_roles) {
+    status Boolean,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity EmployeeProjects(employee_projects) {
+    status Boolean,
+    type Type,
+    startdate Instant,
+    enddate Instant,
+    allocation Boolean,
+    billed String maxlength(15),
+    createdat Instant required,
+    updatedat Instant required,
+    roleid Integer,
+    notes String maxlength(65535),
+    extendedenddate Instant,
+    probability String maxlength(65535)
+}
+
+entity EmployeeRoles(employee_roles) {
+    createdat Instant required,
+    updatedat Instant required,
+    employeeid Integer
+}
+
+entity EmployeeSkills(employee_skills) {
+    createdat Instant required,
+    updatedat Instant required,
+    expertise Integer
+}
+
+entity EmployeeTalents(employee_talents) {
+    criticalposition Boolean,
+    highpotential Boolean,
+    successorfor String maxlength(255),
+    criticalexperience Boolean,
+    promotionreadiness String maxlength(65535),
+    leadershipqualities String maxlength(65535),
+    careerambitions String maxlength(65535),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmployeeWorks(employee_works) {
+    startdate Instant,
+    enddate Instant,
+    designation String maxlength(255),
+    leavingreason String maxlength(65535),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Employees(employees) {
+    firstname String maxlength(255),
+    lastname String maxlength(255),
+    phonenumber String maxlength(255),
+    dateofbirth Instant,
+    email String maxlength(255),
+    skype String maxlength(255),
+    designation String maxlength(255),
+    joiningdate Instant,
+    area String maxlength(255),
+    leavingdate Instant,
+    notes String maxlength(65535),
+    isactive Boolean,
+    googleid String maxlength(255),
+    oracleid String maxlength(255),
+    deptt String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required,
+    genderid Gender required,
+    onprobation Boolean,
+    competency String maxlength(255),
+    resourcetype Resourcetype,
+    grade String maxlength(255),
+    subgrade String maxlength(255),
+    imageurl String maxlength(255),
+    resignationdate Instant,
+    graduationdate LocalDate,
+    careerstartdate LocalDate,
+    externalexpyears Integer,
+    externalexpmonths BigDecimal,
+    placeofbirth String maxlength(255),
+    hireddate Instant,
+    lasttrackingupdate Instant,
+    middlename String maxlength(255),
+    grosssalary Blob,
+    fuelallowance Blob,
+    mobilenumber String maxlength(255),
+    resignationtype String maxlength(255),
+    primaryreasonforleaving String maxlength(255),
+    secondaryreasonforleaving String maxlength(65535),
+    noticeperiodduration Integer,
+    noticeperiodserved Integer,
+    probationperiodduration Integer
+}
+
+entity EmploymentHistory(employment_history) {
+    positiontitle String required maxlength(255),
+    companyname String required maxlength(255),
+    grade String maxlength(255),
+    jobdescription String maxlength(65535),
+    city String maxlength(255),
+    country String maxlength(255),
+    startdate Instant required,
+    enddate Instant required,
+    createdat Instant,
+    updatedat Instant,
+    reasonforleaving String maxlength(65535),
+    grosssalary Blob
+}
+
+entity EmploymentStatuses(employment_statuses) {
+    name String required unique maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity EmploymentTypes(employment_types) {
+    name String required unique maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity Events(events) {
+    type String maxlength(255)
+}
+
+entity FeedbackEmails(feedback_emails) {
+    to String maxlength(65535),
+    body String maxlength(65535),
+    status Integer,
+    sentat Instant,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity FeedbackQuestions(feedback_questions) {
+    question String maxlength(65535),
+    isdefault Boolean,
+    area String maxlength(255),
+    competency String maxlength(255),
+    category Integer,
+    isskill Boolean,
+    skilltype Integer,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity FeedbackRequests(feedback_requests) {
+    status Integer,
+    isreportavailable Boolean,
+    reportpath String maxlength(255),
+    approvedat Instant,
+    expiredat Instant,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity FeedbackRespondents(feedback_respondents) {
+    category Integer required,
+    hasresponded Boolean,
+    respondedat Instant,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity FeedbackResponses(feedback_responses) {
+    answer Blob,
+    rating Blob,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity GoalGroupMappings(goal_group_mappings) {
+    weightage Integer required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity GoalGroups(goal_groups) {
+    title String required maxlength(255),
+    description String maxlength(65535),
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity Goals(goals) {
+    title String required maxlength(255),
+    description String maxlength(65535),
+    measurement String maxlength(65535),
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity HrPerformanceCycles(hr_performance_cycles) {
+    title String required maxlength(255),
+    freeze Boolean,
+    dueDate LocalDate,
+    startDate LocalDate,
+    endDate LocalDate,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity Interviews(interviews) {
+    result String maxlength(255),
+    clientcomments String maxlength(1000),
+    lmcomments String maxlength(1000),
+    scheduledat Instant,
+    createdat Instant required,
+    updatedat Instant required,
+    deletedat Instant
+}
+
+entity LeaveApprovalCriterias(leave_approval_criterias) {
+    name String required maxlength(255),
+    priority Integer required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveApprovers(leave_approvers) {
+    source Source required,
+    minApprovals Integer,
+    priority Integer required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveDetailAdjustmentLogs(leave_detail_adjustment_logs) {
+    action String maxlength(255),
+    count BigDecimal,
+    createdAt Instant required,
+    updatedAt Instant required,
+    version Integer,
+    quotaBeforeAdjustment BigDecimal,
+    quotaAfterAdjustment BigDecimal,
+    comment String maxlength(65535)
+}
+
+entity LeaveDetails(leave_details) {
+    total BigDecimal,
+    used BigDecimal required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveEscalationApprovers(leave_escalation_approvers) {
+    source Source required,
+    minApprovals Integer,
+    priority Integer required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveEscalationCriterias(leave_escalation_criterias) {
+    name String required maxlength(255),
+    priority Integer required,
+    total Integer required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveRequestApproverFlows(leave_request_approver_flows) {
+    approvals Approvals required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveRequestApprovers(leave_request_approvers) {
+    reference Reference required,
+    as String required,
+    comments String maxlength(65535),
+    approverGroup String required maxlength(255),
+    priority Integer required,
+    statusDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity LeaveRequests(leave_requests) {
+    createdAt Instant required,
+    requestStartDate LocalDate required,
+    requestEndDate LocalDate required,
+    isHalfDay Boolean,
+    statusDate Instant required,
+    comments String required maxlength(65535),
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity LeaveRequestsOlds(leave_requests_olds) {
+    startdate Instant,
+    enddate Instant,
+    requesternote String maxlength(65535),
+    managernote String maxlength(65535),
+    currentstatus String maxlength(255),
+    leavescanceled Boolean,
+    requestdate Instant,
+    linkstring String maxlength(255),
+    linkused Boolean,
+    createdat Instant required,
+    updatedat Instant required,
+    ishalfday Boolean,
+    actiondate Instant,
+    lmstatus String maxlength(255),
+    pmstatus String,
+    isbench Boolean,
+    isescalated Boolean,
+    iscommented Boolean,
+    isreminded Boolean,
+    isnotified Boolean,
+    isremindedhr Boolean,
+    isdm Boolean
+}
+
+entity LeaveStatusWorkFlows(leave_status_work_flows) {
+    ifApprovals Boolean required,
+    approvalRequired Boolean required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity LeaveStatuses(leave_statuses) {
+    name String required maxlength(255),
+    group Group required,
+    systemKey SystemKey,
+    default Boolean required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveTypeApprovalRules(leave_type_approval_rules) {
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity LeaveTypeConfigurations(leave_type_configurations) {
+    noOfLeaves BigDecimal required,
+    tenureCycle TenureCycle required,
+    to Integer,
+    from Integer,
+    inclusivity Inclusivity,
+    maxQuota Integer,
+    isAccured Boolean,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveTypeEscalationRules(leave_type_escalation_rules) {
+    noOfDays Integer,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveTypeRestrictions(leave_type_restrictions) {
+    restrictionJson String required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveTypes(leave_types) {
+    name String required maxlength(255),
+    category Category required,
+    cycleType CycleType required,
+    cycleCount Integer required,
+    maxQuota Integer,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeaveTypesOlds(leave_types_olds) {
+    name String maxlength(255),
+    isactive Boolean,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Leaves(leaves) {
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity LeavesCopy(leaves_copy) {
+    annualtotal BigDecimal,
+    annualused BigDecimal,
+    annualadjustments BigDecimal,
+    casualtotal BigDecimal,
+    casualused BigDecimal,
+    sicktotal BigDecimal,
+    sickused BigDecimal,
+    annualtotalnextyear BigDecimal,
+    annualusednextyear BigDecimal,
+    casualtotalnextyear BigDecimal,
+    casualusednextyear BigDecimal,
+    sicktotalnextyear BigDecimal,
+    sickusednextyear BigDecimal,
+    carryforward BigDecimal,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity LeavesOlds(leaves_olds) {
+    annualtotal BigDecimal,
+    annualused BigDecimal,
+    annualadjustments BigDecimal,
+    casualtotal BigDecimal,
+    casualused BigDecimal,
+    sicktotal BigDecimal,
+    sickused BigDecimal,
+    annualtotalnextyear BigDecimal,
+    annualusednextyear BigDecimal,
+    casualtotalnextyear BigDecimal,
+    casualusednextyear BigDecimal,
+    sicktotalnextyear BigDecimal,
+    sickusednextyear BigDecimal,
+    carryforward BigDecimal,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Locations(locations) {
+    name String required maxlength(255),
+    createdat Instant required,
+    updatedat Instant required,
+    deletedat Instant
+}
+
+entity MaritalStatuses(marital_statuses) {
+    status String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity NotificationEvents(notification_events) {
+    name String required maxlength(255),
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity NotificationMergeFields(notification_merge_fields) {
+    field String required maxlength(255),
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity NotificationSentEmailLogs(notification_sent_email_logs) {
+    email String required maxlength(255),
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity NotificationTemplates(notification_templates) {
+    name String required maxlength(255),
+    type Type required,
+    subject String maxlength(255),
+    template Blob required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity PcRaterAttributes(pc_rater_attributes) {
+    rating Blob,
+    comment Blob,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity PcRatingAttributes(pc_rating_attributes) {
+    name String required maxlength(255),
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required,
+    subCategory String maxlength(255),
+    description String maxlength(65535)
+}
+
+entity PcRatingAttributesCategories(pc_rating_attributes_categories) {
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity PcRatings(pc_ratings) {
+    rating Blob,
+    comment Blob,
+    stausDate Instant,
+    dueDate LocalDate,
+    freeze Boolean,
+    includeInFinalRating Boolean,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity PcRatingsTrainings(pc_ratings_trainings) {
+    strength String maxlength(65535),
+    developmentArea String maxlength(65535),
+    careerAmbition String maxlength(65535),
+    shortCourse String maxlength(65535),
+    technicalTraining String maxlength(65535),
+    softSkillsTraining String maxlength(65535),
+    criticalPosition Boolean,
+    highPotential Boolean,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity PcStatuses(pc_statuses) {
+    name String required maxlength(255),
+    group String required maxlength(100),
+    systemKey String maxlength(100),
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity PerformanceCycleEmployeeRating(performance_cycle_employee_rating) {
+    rating Blob,
+    comment Blob,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity PerformanceCycles(performance_cycles) {
+    month Boolean,
+    year Boolean,
+    totalresources Boolean,
+    pmreviewed Boolean,
+    archreviewed Boolean,
+    startdate Instant,
+    enddate Instant,
+    isactive Boolean,
+    createdat Instant,
+    updatedat Instant,
+    projectcount Boolean,
+    criteria Integer,
+    notificationsent Boolean,
+    duedate Instant,
+    initiationdate Instant
+}
+
+entity PerformanceCycles20190826(performance_cycles_20190826) {
+    month Boolean,
+    year Boolean,
+    totalresources Boolean,
+    pmreviewed Boolean,
+    archreviewed Boolean,
+    startdate Instant,
+    enddate Instant,
+    isactive Boolean,
+    createdat Instant,
+    updatedat Instant,
+    projectcount Boolean,
+    criteria Integer,
+    notificationsent Boolean,
+    duedate Instant,
+    initiationdate Instant
+}
+
+entity Permissions(permissions) {
+    name String maxlength(255),
+    description String maxlength(255),
+    groupName String maxlength(255),
+    isactive Boolean,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity ProjectCycles(project_cycles) {
+    isactive Boolean,
+    createdat Instant,
+    updatedat Instant,
+    allowedafterduedateat Instant,
+    duedate Instant,
+    auditlogs String,
+    deletedat Instant
+}
+
+entity ProjectCycles20190826(project_cycles_20190826) {
+    isactive Boolean,
+    createdat Instant,
+    updatedat Instant,
+    performancecycleid Integer,
+    projectid Integer,
+    allowedafterduedateby Integer,
+    allowedafterduedateat Instant,
+    duedate Instant
+}
+
+entity ProjectLeadership(project_leadership) {
+    createdat Instant,
+    updatedat Instant
+}
+
+entity ProjectRoles(project_roles) {
+    role String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required,
+    isleadership Boolean
+}
+
+entity Projects(projects) {
+    name String maxlength(255),
+    isactive Boolean,
+    isdelete Boolean,
+    startdate Instant,
+    enddate Instant,
+    colorcode String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required,
+    deliverymanagerid Integer,
+    architectid Integer,
+    isdeleted Integer,
+    approvedresources Integer,
+    releaseat Instant
+}
+
+entity QualificationTypes(qualification_types) {
+    name String required maxlength(255),
+    createdat Instant,
+    updatedat Instant
+}
+
+entity Questions(questions) {
+    text String maxlength(65535),
+    answer String maxlength(65535),
+    createdat Instant required,
+    updatedat Instant required,
+    deletedat Instant,
+    cleaneduptext String maxlength(65535)
+}
+
+entity QuestionsFrequencyPerClientTrack(questions_frequency_per_client_track) {
+    question String required maxlength(65535),
+    frequency Integer required,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity QuestionsFrequencyPerTrack(questions_frequency_per_track) {
+    question String required maxlength(65535),
+    frequency Integer required,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity QuestionsProcessingEventLogs(questions_processing_event_logs) {
+    processedOn String required maxlength(65535),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity RaterAttributeMappings(rater_attribute_mappings) {
+    effdate Instant,
+    enddate Instant,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity RaterAttributes(rater_attributes) {
+    name String maxlength(255),
+    title String maxlength(255),
+    description String maxlength(1000),
+    effdate Instant,
+    enddate Instant,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity RatingAttributeMappings(rating_attribute_mappings) {
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity RatingAttributes(rating_attributes) {
+    rating Blob,
+    comment Blob,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity RatingCategories(rating_categories) {
+    name String required maxlength(255),
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity RatingOptions(rating_options) {
+    name String required maxlength(255),
+    description String maxlength(65535),
+    from Float required,
+    to Float,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity Ratings(ratings) {
+    rateeid Integer,
+    rateetype Rateetype,
+    duedate Instant,
+    freeze Blob,
+    createdat Instant required,
+    updatedat Instant required,
+    deletedat Instant
+}
+
+entity Reasons(reasons) {
+    name String required unique maxlength(255),
+    isdefault Boolean,
+    createdat Instant,
+    updatedat Instant
+}
+
+entity Religions(religions) {
+    name String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity RolePermissions(role_permissions) {
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Roles(roles) {
+    role String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Sequelizedata(SequelizeData) {
+    name String required maxlength(255)
+}
+
+entity Sequelizemeta(SequelizeMeta) {
+    name String required maxlength(255)
+}
+
+entity Skills(skills) {
+    name String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity Tracks(tracks) {
+    name String maxlength(255),
+    description String maxlength(1000),
+    createdat Instant required,
+    updatedat Instant required,
+    deletedat Instant
+}
+
+entity Universities(universities) {
+    name String maxlength(255),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity UserAttributeApprovalRules(user_attribute_approval_rules) {
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity UserAttributeEscalationRules(user_attribute_escalation_rules) {
+    leaveEscalationCriteriaId Integer required,
+    noOfDays Integer required,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity UserAttributes(user_attributes) {
+    createdAt Instant required,
+    updatedAt Instant required,
+    version Integer required,
+    endDate Instant,
+    effDate Instant
+}
+
+entity UserGoalRaterAttributes(user_goal_rater_attributes) {
+    rating Blob,
+    comment Blob,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity UserGoals(user_goals) {
+    title String required maxlength(255),
+    description String maxlength(65535),
+    measurement String maxlength(65535),
+    weightage Integer,
+    progress Integer,
+    status Status,
+    dueDate LocalDate,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity UserRatings(user_ratings) {
+    rating Rating required,
+    comment String maxlength(65535),
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required
+}
+
+entity UserRatingsRemarks(user_ratings_remarks) {
+    isPromotion Boolean,
+    strength String maxlength(65535),
+    areaOfImprovement String maxlength(65535),
+    promotionJustification String maxlength(65535),
+    newGrade String maxlength(255),
+    isRedesignation Boolean,
+    recommendedSalary Integer,
+    status Status,
+    createdAt Instant required,
+    updatedAt Instant required,
+    deletedAt Instant,
+    version Integer required,
+    otherComments String maxlength(65535)
+}
+
+entity UserRelationApprovalRules(user_relation_approval_rules) {
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity UserRelations(user_relations) {
+    referenceType ReferenceType,
+    referenceId Integer,
+    effDate Instant required,
+    createdAt Instant required,
+    updatedAt Instant required,
+    endDate Instant,
+    version Integer required
+}
+
+entity WorkLogDetails(work_log_details) {
+    percentage String maxlength(255),
+    hours Integer,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity WorkLogs(work_logs) {
+    date LocalDate,
+    mood Integer,
+    createdat Instant required,
+    updatedat Instant required
+}
+
+entity ZEmployeeProjects(z_employee_projects) {
+    status Boolean,
+    type Type,
+    startdate Instant,
+    enddate Instant,
+    name String maxlength(255),
+    allocation Boolean,
+    billed String maxlength(15),
+    createdat Instant required,
+    updatedat Instant required,
+    deliverymanagerid Integer,
+    architectid Integer,
+    notes String maxlength(65535),
+    previousenddate Instant,
+    data String,
+    extendedenddate Instant,
+    probability String maxlength(65535)
+}
+
+entity ZLeaveRequests(z_leave_requests) {
+    action String maxlength(255),
+    userid String maxlength(255),
+    managerid String maxlength(255),
+    requestparams String maxlength(65535),
+    responseparams String maxlength(65535),
+    createdat Instant required,
+    updatedat Instant required
+}
+
+// Relations
+relationship ManyToOne {
+    Approvers{approverGroup required} to ApproverGroups{approversApprovergroup}
+}
+
+relationship ManyToOne {
+    ClaimApprovers{status} to ClaimStatus{claimapproversStatus}
+}
+
+relationship ManyToOne {
+    ClaimApprovers{claimrequest} to ClaimRequests{claimapproversClaimrequest}
+}
+
+relationship ManyToOne {
+    ClaimDetails{claimrequest} to ClaimRequests{claimdetailsClaimrequest}
+}
+
+relationship ManyToOne {
+    ClaimDetails{claimtype} to ClaimTypes{claimdetailsClaimtype}
+}
+
+relationship ManyToOne {
+    ClaimImages{claimrequest} to ClaimRequests{claimimagesClaimrequest}
+}
+
+relationship ManyToOne {
+    ClaimRequestViews{employee} to Employees{claimrequestviewsEmployee}
+}
+
+relationship ManyToOne {
+    ClaimRequests{employee} to Employees{claimrequestsEmployee}
+}
+
+relationship ManyToOne {
+    CompensationBenefits{benefit(name) required} to Benefits{compensationbenefitsBenefit}
+}
+
+relationship ManyToOne {
+    CompensationBenefits{employeecompensation required} to EmployeeCompensation{compensationbenefitsEmployeecompensation}
+}
+
+relationship ManyToOne {
+    DealRequirementMatchingResources{dealrequirement} to DealRequirements{dealrequirementmatchingresourcesDealrequirement}
+}
+
+relationship ManyToOne {
+    DealRequirementMatchingResources{resource} to DealResources{dealrequirementmatchingresourcesResource}
+}
+
+relationship ManyToOne {
+    DealRequirementMatchingResources{resourcestatus(systemKey)} to DealResourceStatus{dealrequirementmatchingresourcesResourcestatus}
+}
+
+relationship ManyToOne {
+    DealRequirementMatchingResources{systemstatus(systemKey)} to DealResourceStatus{dealrequirementmatchingresourcesSystemstatus}
+}
+
+relationship ManyToOne {
+    DealRequirements{deal} to Deals{dealrequirementsDeal}
+}
+
+relationship ManyToOne {
+    DealResourceEventLogs{matchingresource} to DealRequirementMatchingResources{dealresourceeventlogsMatchingresource}
+}
+
+relationship ManyToOne {
+    DealResourceEventLogs{resourcestatus(systemKey)} to DealResourceStatus{dealresourceeventlogsResourcestatus}
+}
+
+relationship ManyToOne {
+    DealResourceEventLogs{systemstatus(systemKey)} to DealResourceStatus{dealresourceeventlogsSystemstatus}
+}
+
+relationship ManyToOne {
+    DealResourceSkills{resource} to DealResources{dealresourceskillsResource}
+}
+
+relationship ManyToOne {
+    DealResourceSkills{skill} to Skills{dealresourceskillsSkill}
+}
+
+relationship ManyToOne {
+    DealResources{employee} to Employees{dealresourcesEmployee}
+}
+
+relationship ManyToOne {
+    Departments{division} to Divisions{departmentsDivision}
+}
+
+relationship ManyToOne {
+    DesignationJobDescriptions{document required} to Documents{designationjobdescriptionsDocument}
+}
+
+relationship ManyToOne {
+    DesignationJobDescriptions{designation required} to Designations{designationjobdescriptionsDesignation}
+}
+
+relationship ManyToOne {
+    EmployeeAddresses{address required} to Addresses{employeeaddressesAddress}
+}
+
+relationship ManyToOne {
+    EmployeeAddresses{employee required} to Employees{employeeaddressesEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeBirthdays{employee} to Employees{employeebirthdaysEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeCertificates{employee required} to Employees{employeecertificatesEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeComments{document} to Documents{employeecommentsDocument}
+}
+
+relationship ManyToOne {
+    EmployeeComments{commenter required} to Employees{employeecommentsCommenter}
+}
+
+relationship ManyToOne {
+    EmployeeComments{employee required} to Employees{employeecommentsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeCompensation{employee required} to Employees{employeecompensationEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeCompensation{reason(name)} to Reasons{employeecompensationReason}
+}
+
+relationship ManyToOne {
+    EmployeeContacts{employee required} to Employees{employeecontactsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeDetails{employee required} to Employees{employeedetailsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeDocuments{document required} to Documents{employeedocumentsDocument}
+}
+
+relationship ManyToOne {
+    EmployeeDocuments{employee required} to Employees{employeedocumentsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeEducation{qualificationtype required} to QualificationTypes{employeeeducationQualificationtype}
+}
+
+relationship ManyToOne {
+    EmployeeEducation{employee required} to Employees{employeeeducationEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeEmergencyContacts{employee required} to Employees{employeeemergencycontactsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeFamilyInfo{employee required} to Employees{employeefamilyinfoEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{employee required} to Employees{employeejobinfoEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{designation required} to Designations{employeejobinfoDesignation}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{reviewmanager} to Employees{employeejobinfoReviewmanager}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{manager} to Employees{employeejobinfoManager}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{department required} to Departments{employeejobinfoDepartment}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{employmenttype(name)} to EmploymentTypes{employeejobinfoEmploymenttype}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{jobdescription} to DesignationJobDescriptions{employeejobinfoJobdescription}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{division} to Divisions{employeejobinfoDivision}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{businessunit} to BusinessUnits{employeejobinfoBusinessunit}
+}
+
+relationship ManyToOne {
+    EmployeeJobInfo{competency} to Competencies{employeejobinfoCompetency}
+}
+
+relationship ManyToOne {
+    EmployeeProfileHistoryLogs{employee required} to Employees{employeeprofilehistorylogsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeProjectRatings{projectarchitect} to Employees{employeeprojectratingsProjectarchitect}
+}
+
+relationship ManyToOne {
+    EmployeeProjectRatings{projectmanager} to Employees{employeeprojectratingsProjectmanager}
+}
+
+relationship ManyToOne {
+    EmployeeProjectRatings{employee} to Employees{employeeprojectratingsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeProjectRatings{projectcycle} to ProjectCycles{employeeprojectratingsProjectcycle}
+}
+
+relationship ManyToOne {
+    EmployeeProjectRoles{employeeproject} to EmployeeProjects{employeeprojectrolesEmployeeproject}
+}
+
+relationship ManyToOne {
+    EmployeeProjectRoles{projectrole} to ProjectRoles{employeeprojectrolesProjectrole}
+}
+
+relationship ManyToOne {
+    EmployeeProjects{employee} to Employees{employeeprojectsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeProjects{project} to Projects{employeeprojectsProject}
+}
+
+relationship ManyToOne {
+    EmployeeProjects{assignor} to Employees{employeeprojectsAssignor}
+}
+
+relationship ManyToOne {
+    EmployeeRoles{role} to Roles{employeerolesRole}
+}
+
+relationship ManyToOne {
+    EmployeeSkills{employee} to Employees{employeeskillsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeSkills{skill} to Skills{employeeskillsSkill}
+}
+
+relationship ManyToOne {
+    EmployeeTalents{employee required} to Employees{employeetalentsEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeWorks{employee} to Employees{employeeworksEmployee}
+}
+
+relationship ManyToOne {
+    EmployeeWorks{company} to Companies{employeeworksCompany}
+}
+
+relationship ManyToOne {
+    Employees{location} to Locations{employeesLocation}
+}
+
+relationship ManyToOne {
+    Employees{role} to Roles{employeesRole}
+}
+
+relationship ManyToOne {
+    Employees{manager} to Employees{employeesManager}
+}
+
+relationship ManyToOne {
+    Employees{leave} to LeavesOlds{employeesLeave}
+}
+
+relationship ManyToOne {
+    Employees{department} to Departments{employeesDepartment}
+}
+
+relationship ManyToOne {
+    Employees{businessunit} to BusinessUnits{employeesBusinessunit}
+}
+
+relationship ManyToOne {
+    Employees{division} to Divisions{employeesDivision}
+}
+
+relationship ManyToOne {
+    Employees{competency} to Competencies{employeesCompetency}
+}
+
+relationship ManyToOne {
+    Employees{employmentstatus(name)} to EmploymentStatuses{employeesEmploymentstatus}
+}
+
+relationship ManyToOne {
+    Employees{employmenttype(name)} to EmploymentTypes{employeesEmploymenttype}
+}
+
+relationship ManyToOne {
+    Employees{designation} to Designations{employeesDesignation}
+}
+
+relationship ManyToOne {
+    EmploymentHistory{employee required} to Employees{employmenthistoryEmployee}
+}
+
+relationship ManyToOne {
+    FeedbackEmails{respondent} to FeedbackRespondents{feedbackemailsRespondent}
+}
+
+relationship ManyToOne {
+    FeedbackQuestions{employee} to Employees{feedbackquestionsEmployee}
+}
+
+relationship ManyToOne {
+    FeedbackRequests{employee} to Employees{feedbackrequestsEmployee}
+}
+
+relationship ManyToOne {
+    FeedbackRequests{linemanager} to Employees{feedbackrequestsLinemanager}
+}
+
+relationship ManyToOne {
+    FeedbackRespondents{employee} to Employees{feedbackrespondentsEmployee}
+}
+
+relationship ManyToOne {
+    FeedbackRespondents{request} to FeedbackRequests{feedbackrespondentsRequest}
+}
+
+relationship ManyToOne {
+    FeedbackResponses{respondent} to FeedbackRespondents{feedbackresponsesRespondent}
+}
+
+relationship ManyToOne {
+    FeedbackResponses{question} to FeedbackQuestions{feedbackresponsesQuestion}
+}
+
+relationship ManyToOne {
+    GoalGroupMappings{goalGroup required} to GoalGroups{goalgroupmappingsGoalgroup}
+}
+
+relationship ManyToOne {
+    GoalGroupMappings{goal required} to Goals{goalgroupmappingsGoal}
+}
+
+relationship ManyToOne {
+    Interviews{employee required} to Employees{interviewsEmployee}
+}
+
+relationship ManyToOne {
+    Interviews{project required} to Projects{interviewsProject}
+}
+
+relationship ManyToOne {
+    Interviews{track required} to Tracks{interviewsTrack}
+}
+
+relationship ManyToOne {
+    LeaveApprovers{leaveApprovalCriteria required} to LeaveApprovalCriterias{leaveapproversLeaveapprovalcriteria}
+}
+
+relationship ManyToOne {
+    LeaveApprovers{attribute required} to Attributes{leaveapproversAttribute}
+}
+
+relationship ManyToOne {
+    LeaveDetailAdjustmentLogs{leaveDetail} to LeaveDetails{leavedetailadjustmentlogsLeavedetail}
+}
+
+relationship ManyToOne {
+    LeaveDetailAdjustmentLogs{adjustedBy} to Employees{leavedetailadjustmentlogsAdjustedby}
+}
+
+relationship ManyToOne {
+    LeaveDetails{leave required} to Leaves{leavedetailsLeave}
+}
+
+relationship ManyToOne {
+    LeaveDetails{leaveType required} to LeaveTypes{leavedetailsLeavetype}
+}
+
+relationship ManyToOne {
+    LeaveEscalationApprovers{leaveEscalationCriteria required} to LeaveEscalationCriterias{leaveescalationapproversLeaveescalationcriteria}
+}
+
+relationship ManyToOne {
+    LeaveEscalationApprovers{attribute required} to Attributes{leaveescalationapproversAttribute}
+}
+
+relationship ManyToOne {
+    LeaveRequestApproverFlows{approverStatus required} to LeaveStatuses{leaverequestapproverflowsApproverstatus}
+}
+
+relationship ManyToOne {
+    LeaveRequestApproverFlows{currentLeaveRequestStatus required} to LeaveStatuses{leaverequestapproverflowsCurrentleaverequeststatus}
+}
+
+relationship ManyToOne {
+    LeaveRequestApproverFlows{nextLeaveRequestStatus required} to LeaveStatuses{leaverequestapproverflowsNextleaverequeststatus}
+}
+
+relationship ManyToOne {
+    LeaveRequestApprovers{leaveRequest required} to LeaveRequests{leaverequestapproversLeaverequest}
+}
+
+relationship ManyToOne {
+    LeaveRequestApprovers{user} to Employees{leaverequestapproversUser}
+}
+
+relationship ManyToOne {
+    LeaveRequestApprovers{status required} to LeaveStatuses{leaverequestapproversStatus}
+}
+
+relationship ManyToOne {
+    LeaveRequests{leaveDetail required} to LeaveDetails{leaverequestsLeavedetail}
+}
+
+relationship ManyToOne {
+    LeaveRequests{leaveStatus required} to LeaveStatuses{leaverequestsLeavestatus}
+}
+
+relationship ManyToOne {
+    LeaveRequests{parentLeaveRequest} to LeaveRequests{leaverequestsParentleaverequest}
+}
+
+relationship ManyToOne {
+    LeaveRequestsOlds{leavetype} to LeaveTypesOlds{leaverequestsoldsLeavetype}
+}
+
+relationship ManyToOne {
+    LeaveRequestsOlds{manager} to Employees{leaverequestsoldsManager}
+}
+
+relationship ManyToOne {
+    LeaveRequestsOlds{employee} to Employees{leaverequestsoldsEmployee}
+}
+
+relationship ManyToOne {
+    LeaveStatusWorkFlows{currentStatus required} to LeaveStatuses{leavestatusworkflowsCurrentstatus}
+}
+
+relationship ManyToOne {
+    LeaveStatusWorkFlows{nextStatus required} to LeaveStatuses{leavestatusworkflowsNextstatus}
+}
+
+relationship ManyToOne {
+    LeaveStatusWorkFlows{skipToStatus} to LeaveStatuses{leavestatusworkflowsSkiptostatus}
+}
+
+relationship ManyToOne {
+    LeaveTypeApprovalRules{leaveApprovalCriteria required} to LeaveApprovalCriterias{leavetypeapprovalrulesLeaveapprovalcriteria}
+}
+
+relationship ManyToOne {
+    LeaveTypeApprovalRules{leaveType required} to LeaveTypes{leavetypeapprovalrulesLeavetype}
+}
+
+relationship ManyToOne {
+    LeaveTypeConfigurations{leaveType required} to LeaveTypes{leavetypeconfigurationsLeavetype}
+}
+
+relationship ManyToOne {
+    LeaveTypeEscalationRules{leaveEscalationCriteria required} to LeaveEscalationCriterias{leavetypeescalationrulesLeaveescalationcriteria}
+}
+
+relationship ManyToOne {
+    LeaveTypeEscalationRules{leaveRequestStatus required} to LeaveStatuses{leavetypeescalationrulesLeaverequeststatus}
+}
+
+relationship ManyToOne {
+    LeaveTypeEscalationRules{leaveType required} to LeaveTypes{leavetypeescalationrulesLeavetype}
+}
+
+relationship ManyToOne {
+    LeaveTypeRestrictions{leaveType required} to LeaveTypes{leavetyperestrictionsLeavetype}
+}
+
+relationship ManyToOne {
+    Leaves{user required} to Employees{leavesUser}
+}
+
+relationship ManyToOne {
+    NotificationMergeFields{notificationEvent required} to NotificationEvents{notificationmergefieldsNotificationevent}
+}
+
+relationship ManyToOne {
+    NotificationSentEmailLogs{notificationTemplate required} to NotificationTemplates{notificationsentemaillogsNotificationtemplate}
+}
+
+relationship ManyToOne {
+    NotificationSentEmailLogs{recipient required} to Employees{notificationsentemaillogsRecipient}
+}
+
+relationship ManyToOne {
+    NotificationTemplates{notificationEvent required} to NotificationEvents{notificationtemplatesNotificationevent}
+}
+
+relationship ManyToOne {
+    PcRaterAttributes{ratingAttributeMapping required} to RatingAttributeMappings{pcraterattributesRatingattributemapping}
+}
+
+relationship ManyToOne {
+    PcRaterAttributes{ratingOption} to RatingOptions{pcraterattributesRatingoption}
+}
+
+relationship ManyToOne {
+    PcRaterAttributes{rating required} to PcRatings{pcraterattributesRating}
+}
+
+relationship ManyToOne {
+    PcRatingAttributesCategories{category required} to RatingCategories{pcratingattributescategoriesCategory}
+}
+
+relationship ManyToOne {
+    PcRatingAttributesCategories{ratingAttribute required} to PcRatingAttributes{pcratingattributescategoriesRatingattribute}
+}
+
+relationship ManyToOne {
+    PcRatings{status} to PcStatuses{pcratingsStatus}
+}
+
+relationship ManyToOne {
+    PcRatings{pcemployeerating required} to PerformanceCycleEmployeeRating{pcratingsPcemployeerating}
+}
+
+relationship ManyToOne {
+    PcRatings{employee required} to Employees{pcratingsEmployee}
+}
+
+relationship ManyToOne {
+    PcRatingsTrainings{successorFor} to Employees{pcratingstrainingsSuccessorfor}
+}
+
+relationship ManyToOne {
+    PcRatingsTrainings{rating required} to PcRatings{pcratingstrainingsRating}
+}
+
+relationship ManyToOne {
+    PerformanceCycleEmployeeRating{performancecycle required} to HrPerformanceCycles{performancecycleemployeeratingPerformancecycle}
+}
+
+relationship ManyToOne {
+    PerformanceCycleEmployeeRating{employee required} to Employees{performancecycleemployeeratingEmployee}
+}
+
+relationship ManyToOne {
+    PerformanceCycleEmployeeRating{manager required} to Employees{performancecycleemployeeratingManager}
+}
+
+relationship ManyToMany {
+    PerformanceCycles{projectcycle} to ProjectCycles{performancecycle}
+}
+
+relationship ManyToMany {
+    PerformanceCycles{employeerating} to Ratings{performancecycle}
+}
+
+relationship ManyToMany {
+    ProjectCycles{rating} to Ratings{projectcycle}
+}
+
+relationship ManyToOne {
+    ProjectCycles{project} to Projects{projectcyclesProject}
+}
+
+relationship ManyToOne {
+    ProjectCycles{allowedafterduedateby} to Employees{projectcyclesAllowedafterduedateby}
+}
+
+relationship ManyToOne {
+    ProjectCycles{architect} to Employees{projectcyclesArchitect}
+}
+
+relationship ManyToOne {
+    ProjectCycles{projectmanager} to Employees{projectcyclesProjectmanager}
+}
+
+relationship ManyToOne {
+    ProjectLeadership{projectrole} to ProjectRoles{projectleadershipProjectrole}
+}
+
+relationship ManyToOne {
+    ProjectLeadership{project} to Projects{projectleadershipProject}
+}
+
+relationship ManyToOne {
+    ProjectLeadership{employee} to Employees{projectleadershipEmployee}
+}
+
+relationship ManyToOne {
+    Projects{projectmanager} to Employees{projectsProjectmanager}
+}
+
+relationship ManyToOne {
+    Projects{businessunit} to BusinessUnits{projectsBusinessunit}
+}
+
+relationship ManyToOne {
+    Questions{interview} to Interviews{questionsInterview}
+}
+
+relationship ManyToOne {
+    Questions{project} to Projects{questionsProject}
+}
+
+relationship ManyToOne {
+    Questions{track} to Tracks{questionsTrack}
+}
+
+relationship ManyToOne {
+    QuestionsFrequencyPerClientTrack{project} to Projects{questionsfrequencyperclienttrackProject}
+}
+
+relationship ManyToOne {
+    QuestionsFrequencyPerClientTrack{track} to Tracks{questionsfrequencyperclienttrackTrack}
+}
+
+relationship ManyToOne {
+    QuestionsFrequencyPerTrack{track required} to Tracks{questionsfrequencypertrackTrack}
+}
+
+relationship ManyToOne {
+    RaterAttributeMappings{raterattribute} to RaterAttributes{raterattributemappingsRaterattribute}
+}
+
+relationship ManyToOne {
+    RaterAttributeMappings{for} to Attributes{raterattributemappingsFor}
+}
+
+relationship ManyToOne {
+    RaterAttributeMappings{by} to Attributes{raterattributemappingsBy}
+}
+
+relationship ManyToOne {
+    RatingAttributeMappings{attribute required} to Attributes{ratingattributemappingsAttribute}
+}
+
+relationship ManyToOne {
+    RatingAttributeMappings{ratingAttribute required} to PcRatingAttributes{ratingattributemappingsRatingattribute}
+}
+
+relationship ManyToOne {
+    RatingAttributes{rating} to Ratings{ratingattributesRating}
+}
+
+relationship ManyToOne {
+    RatingAttributes{raterattributemapping} to RaterAttributeMappings{ratingattributesRaterattributemapping}
+}
+
+relationship ManyToOne {
+    Ratings{rater} to Employees{ratingsRater}
+}
+
+relationship ManyToOne {
+    RolePermissions{role} to Roles{rolepermissionsRole}
+}
+
+relationship ManyToOne {
+    RolePermissions{permission} to Permissions{rolepermissionsPermission}
+}
+
+relationship ManyToOne {
+    Tracks{competency} to Competencies{tracksCompetency}
+}
+
+relationship ManyToOne {
+    UserAttributeApprovalRules{attribute required} to Attributes{userattributeapprovalrulesAttribute}
+}
+
+relationship ManyToOne {
+    UserAttributeApprovalRules{leaveApprovalCriteria required} to LeaveApprovalCriterias{userattributeapprovalrulesLeaveapprovalcriteria}
+}
+
+relationship ManyToOne {
+    UserAttributeEscalationRules{attribute required} to Attributes{userattributeescalationrulesAttribute}
+}
+
+relationship ManyToOne {
+    UserAttributeEscalationRules{approverStatus required} to LeaveStatuses{userattributeescalationrulesApproverstatus}
+}
+
+relationship ManyToOne {
+    UserAttributeEscalationRules{leaveescalationcriteria} to LeaveEscalationCriterias{userattributeescalationrulesLeaveescalationcriteria}
+}
+
+relationship ManyToOne {
+    UserAttributes{attribute required} to Attributes{userattributesAttribute}
+}
+
+relationship ManyToOne {
+    UserAttributes{user required} to Employees{userattributesUser}
+}
+
+relationship ManyToOne {
+    UserGoalRaterAttributes{rating required} to PcRatings{usergoalraterattributesRating}
+}
+
+relationship ManyToOne {
+    UserGoalRaterAttributes{usergoal} to UserGoals{usergoalraterattributesUsergoal}
+}
+
+relationship ManyToOne {
+    UserGoals{user} to Employees{usergoalsUser}
+}
+
+relationship ManyToOne {
+    UserGoals{referenceGoal} to Goals{usergoalsReferencegoal}
+}
+
+relationship ManyToOne {
+    UserRatings{user required} to Employees{userratingsUser}
+}
+
+relationship ManyToOne {
+    UserRatings{reviewManager required} to Employees{userratingsReviewmanager}
+}
+
+relationship ManyToOne {
+    UserRatings{performanceCycle required} to HrPerformanceCycles{userratingsPerformancecycle}
+}
+
+relationship ManyToOne {
+    UserRatingsRemarks{designationAfterPromotion} to Designations{userratingsremarksDesignationafterpromotion}
+}
+
+relationship ManyToOne {
+    UserRatingsRemarks{designationAfterRedesignation} to Designations{userratingsremarksDesignationafterredesignation}
+}
+
+relationship ManyToOne {
+    UserRatingsRemarks{rater required} to Employees{userratingsremarksRater}
+}
+
+relationship ManyToOne {
+    UserRatingsRemarks{pcEmployeeRating required} to PerformanceCycleEmployeeRating{userratingsremarksPcemployeerating}
+}
+
+relationship ManyToOne {
+    UserRelationApprovalRules{attribute required} to Attributes{userrelationapprovalrulesAttribute}
+}
+
+relationship ManyToOne {
+    UserRelationApprovalRules{leaveApprovalCriteria required} to LeaveApprovalCriterias{userrelationapprovalrulesLeaveapprovalcriteria}
+}
+
+relationship ManyToOne {
+    UserRelations{user required} to Employees{userrelationsUser}
+}
+
+relationship ManyToOne {
+    UserRelations{attribute required} to Attributes{userrelationsAttribute}
+}
+
+relationship ManyToOne {
+    UserRelations{relatedUser} to Employees{userrelationsRelateduser}
+}
+
+relationship ManyToOne {
+    WorkLogDetails{worklog} to WorkLogs{worklogdetailsWorklog}
+}
+
+relationship ManyToOne {
+    WorkLogDetails{project} to Projects{worklogdetailsProject}
+}
+
+relationship ManyToOne {
+    WorkLogs{employee} to Employees{worklogsEmployee}
+}
+
+relationship ManyToOne {
+    ZEmployeeProjects{event} to Events{zemployeeprojectsEvent}
+}
+
+relationship ManyToOne {
+    ZEmployeeProjects{employee} to Employees{zemployeeprojectsEmployee}
+}
+
+relationship ManyToOne {
+    ZEmployeeProjects{project} to Projects{zemployeeprojectsProject}
+}
+
+relationship ManyToOne {
+    ZEmployeeProjects{employeeproject} to EmployeeProjects{zemployeeprojectsEmployeeproject}
+}
+
+relationship ManyToOne {
+    ZEmployeeProjects{assignor} to Employees{zemployeeprojectsAssignor}
+}
+
+relationship ManyToOne {
+    ZEmployeeProjects{projectmanager} to Employees{zemployeeprojectsProjectmanager}
+}
+
+// Options
+service * with serviceClass
+
+paginate * with pagination
+
+filter *
